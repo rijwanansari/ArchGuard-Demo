@@ -1,0 +1,15 @@
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.csproj.AssemblyReference.cache
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.AssemblyInfoInputs.cache
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.AssemblyInfo.cs
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/bin/Debug/net10.0/ArchGuard.Infrastructure.deps.json
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/bin/Debug/net10.0/ArchGuard.Infrastructure.dll
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/bin/Debug/net10.0/ArchGuard.Infrastructure.pdb
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/bin/Debug/net10.0/ArchGuard.Domain.dll
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/bin/Debug/net10.0/ArchGuard.Domain.pdb
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuar.C4B72E0B.Up2Date
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.dll
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/refint/ArchGuard.Infrastructure.dll
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.pdb
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ref/ArchGuard.Infrastructure.dll

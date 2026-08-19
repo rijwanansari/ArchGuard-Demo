@@ -1,0 +1,74 @@
+[
+  {
+    "id": "SEC-001",
+    "name": "API Authentication",
+    "domain": "Security",
+    "severity": "High",
+    "description": "Production APIs must use approved authentication.",
+    "rule": "API authentication must be OAuth2/OIDC or an approved enterprise mechanism."
+  },
+  {
+    "id": "SEC-002",
+    "name": "Secrets Management",
+    "domain": "Security",
+    "severity": "High",
+    "description": "Application secrets must use approved secret management.",
+    "rule": "Production APIs must use Azure Key Vault or an approved secret store."
+  },
+  {
+    "id": "DATA-001",
+    "name": "PII Classification",
+    "domain": "Data",
+    "severity": "High",
+    "description": "PII must be classified as Confidential.",
+    "rule": "containsPii=true requires classification=Confidential."
+  },
+  {
+    "id": "DATA-002",
+    "name": "PII Data Residency",
+    "domain": "Data",
+    "severity": "Medium",
+    "description": "PII residency must be explicitly declared.",
+    "rule": "PII assets cannot have unknown residency."
+  },
+  {
+    "id": "INT-001",
+    "name": "Integration Standard",
+    "domain": "Integration",
+    "severity": "Medium",
+    "description": "Enterprise integrations must use approved protocols.",
+    "rule": "HTTPS, REST, ServiceBus and EventGrid are approved in this demo."
+  },
+  {
+    "id": "RES-001",
+    "name": "Messaging Resilience",
+    "domain": "Reliability",
+    "severity": "High",
+    "description": "Messaging workloads require retry and DLQ controls.",
+    "rule": "Messaging components must define retryPolicy and deadLetterQueue."
+  },
+  {
+    "id": "CLOUD-001",
+    "name": "Technology Catalog",
+    "domain": "Cloud",
+    "severity": "Medium",
+    "description": "Production workloads should use approved technologies.",
+    "rule": "Component technologies must be in the approved catalog."
+  },
+  {
+    "id": "AI-001",
+    "name": "AI Data Boundary",
+    "domain": "AI Governance",
+    "severity": "Critical",
+    "description": "AI workloads must use an approved data boundary.",
+    "rule": "AI components handling enterprise data require an approved AI boundary."
+  },
+  {
+    "id": "AI-002",
+    "name": "AI PII Handling",
+    "domain": "AI Governance",
+    "severity": "Critical",
+    "description": "PII must not be sent to AI without explicit controls.",
+    "rule": "PII + AI requires redaction or an approved PII-allowed boundary."
+  }
+]

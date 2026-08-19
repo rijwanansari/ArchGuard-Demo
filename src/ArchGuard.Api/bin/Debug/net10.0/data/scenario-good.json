@@ -1,0 +1,74 @@
+{
+  "name": "Customer Notification Platform - Remediated",
+  "businessCapability": "Customer Communications",
+  "environment": "Production",
+  "components": [
+    {
+      "name": "NotificationApi",
+      "type": "API",
+      "technology": "Azure App Service",
+      "properties": {
+        "authentication": "OAuth2",
+        "secretsManagement": "Azure Key Vault"
+      }
+    },
+    {
+      "name": "NotificationWorker",
+      "type": "Worker",
+      "technology": "Azure Functions",
+      "properties": {}
+    },
+    {
+      "name": "MessageBus",
+      "type": "Messaging",
+      "technology": "Azure Service Bus",
+      "properties": {
+        "retryPolicy": "ExponentialBackoff",
+        "deadLetterQueue": "NotificationDLQ"
+      }
+    },
+    {
+      "name": "CustomerDb",
+      "type": "Database",
+      "technology": "Azure SQL",
+      "properties": {}
+    },
+    {
+      "name": "CustomerAI",
+      "type": "AI",
+      "technology": "Azure OpenAI",
+      "properties": {
+        "dataPolicy": "NoPII"
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "from": "NotificationApi",
+      "to": "NotificationWorker",
+      "protocol": "HTTPS"
+    },
+    {
+      "from": "NotificationWorker",
+      "to": "MessageBus",
+      "protocol": "ServiceBus"
+    }
+  ],
+  "dataAssets": [
+    {
+      "name": "CustomerProfile",
+      "classification": "Confidential",
+      "store": "CustomerDb",
+      "containsPii": true,
+      "residency": "SoutheastAsia"
+    }
+  ],
+  "externalSystems": [
+    {
+      "name": "Azure OpenAI",
+      "type": "AI",
+      "dataBoundary": "EnterpriseApproved",
+      "approved": true
+    }
+  ]
+}

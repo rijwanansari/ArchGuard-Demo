@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ArchGuard — AI Architecture Governance</title>
+<style>
+body{font-family:Inter,Arial,sans-serif;margin:0;background:#0b1020;color:#e9eef8}
+header{padding:24px 6%;background:#111936;border-bottom:1px solid #293355}
+h1{margin:0 0 5px;font-size:30px} .sub{color:#9ca9c7}
+main{padding:28px 6%;max-width:1250px;margin:auto}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:#121a32;border:1px solid #2a3659;border-radius:14px;padding:20px}
+textarea{width:100%;height:420px;background:#0a1022;color:#dbe7ff;border:1px solid #334263;border-radius:10px;padding:14px;font-family:monospace;box-sizing:border-box}
+button{border:0;border-radius:9px;padding:12px 18px;margin:8px 8px 0 0;cursor:pointer;font-weight:700}
+.primary{background:#78a7ff;color:#081021}.secondary{background:#27365c;color:#fff}
+.metrics{display:flex;gap:12px;flex-wrap:wrap;margin:15px 0}.metric{background:#1a2544;border-radius:10px;padding:12px 16px}
+#status{font-size:25px;font-weight:800}.finding{padding:13px;border-left:4px solid #f0b35b;background:#18213c;margin:10px 0;border-radius:6px}
+.critical{border-left-color:#ff5d6c}.high{border-left-color:#ff9e5b}.medium{border-left-color:#f2d35e}
+pre{white-space:pre-wrap;line-height:1.5;color:#dbe7ff}
+.small{font-size:13px;color:#8f9bb8}
+</style>
+</head>
+<body>
+<header>
+<h1>ArchGuard</h1>
+<div class="sub">AI-Powered Enterprise Architecture Governance — event demo</div>
+</header>
+<main>
+<div class="grid">
+<section class="card">
+<h2>Architecture Submission</h2>
+<p class="small">Load the deliberately bad production scenario, then remediate it.</p>
+<textarea id="architecture"></textarea>
+<button class="secondary" onclick="loadScenario('bad')">Load Bad Scenario</button>
+<button class="secondary" onclick="loadScenario('good')">Load Remediated Scenario</button>
+<button class="primary" onclick="evaluate()">Evaluate Architecture</button>
+<button class="primary" onclick="aiReview()">Ask Governance Agent</button>
+</section>
+<section class="card">
+<h2>Governance Decision</h2>
+<div id="status">Not evaluated</div>
+<div id="metrics"></div>
+<div id="findings"></div>
+</section>
+</div>
+<section class="card" style="margin-top:18px">
+<h2>AI Architect Review</h2>
+<pre id="ai">Run “Ask Governance Agent” after configuring Azure OpenAI.</pre>
+</section>
+</main>
+<script>
+let bad=null, good=null;
+async function init(){
+ bad=await (await fetch('/api/scenarios/bad')).json();
+ good=await (await fetch('/api/scenarios/good')).json();
+ loadScenario('bad');
+}
+function loadScenario(which){
+ document.getElementById('architecture').value=JSON.stringify(which==='bad'?bad:good,null,2);
+}
+async function evaluate(){
+ const a=JSON.parse(document.getElementById('architecture').value);
+ const r=await fetch('/api/evaluate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(a)});
+ const x=await r.json();
+ document.getElementById('status').textContent=x.status+' — '+x.score+'/100';
+ document.getElementById('metrics').innerHTML=
+ `<div class="metrics"><div class="metric">🔴 Critical: ${x.critical}</div><div class="metric">🟠 High: ${x.high}</div><div class="metric">🟡 Medium: ${x.medium}</div><div class="metric">🟢 Low: ${x.low}</div></div>`;
+ document.getElementById('findings').innerHTML=x.findings.map(f=>
+ `<div class="finding ${f.severity.toLowerCase()}"><b>[${f.severity}] ${f.title}</b><br>${f.target}<br><small>Evidence: ${f.evidence}</small><br><small>Recommendation: ${f.recommendation}</small></div>`).join('');
+}
+async function aiReview(){
+ const a=JSON.parse(document.getElementById('architecture').value);
+ document.getElementById('ai').textContent='Agent is reviewing the architecture…';
+ const r=await fetch('/api/review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(a)});
+ const x=await r.json();
+ document.getElementById('ai').textContent=x.aiReview;
+ await evaluate();
+}
+init();
+</script>
+</body>
+</html>
