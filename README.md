@@ -12,7 +12,7 @@ A developer submits a production architecture. ArchGuard:
 2. Runs deterministic governance policies.
 3. Calculates a governance score.
 4. Identifies critical/high/medium violations.
-5. Uses Microsoft Agent Framework + Azure OpenAI Responses API to explain the findings.
+5. Uses Microsoft Agent Framework + Azure OpenAI to explain the findings when configured.
 6. Uses agent tools to retrieve policies and technology guidance.
 7. Recommends remediation.
 8. Distinguishes machine-enforceable controls from human architect decisions.
@@ -29,21 +29,22 @@ A developer submits a production architecture. ArchGuard:
 
 - .NET 10
 - Microsoft Agent Framework
-- Azure OpenAI Responses API
+- Azure OpenAI chat deployment
 - Azure Identity / Entra ID
 - ASP.NET Core Minimal API
+- Swagger / OpenAPI
 - Static HTML dashboard
 - xUnit
 
-Microsoft currently recommends the Azure OpenAI Responses client for new, full-featured Agent Framework agents because it supports the richest hosted tool surface. See the Microsoft Learn links in `docs/REFERENCES.md`.
+See the Microsoft Learn links in `docs/REFERENCES.md` for the Agent Framework and Azure OpenAI references used by this demo.
 
 ## Prerequisites
 
 - .NET 10 SDK
-- Azure OpenAI resource with a Responses-capable deployment
-- Azure CLI
+- Azure OpenAI resource with a chat-capable deployment, optional for deterministic-only mode
+- Azure CLI, optional when using Azure OpenAI with `DefaultAzureCredential`
 
-Authenticate:
+Authenticate if you want to run the AI review path with Azure OpenAI:
 
 ```bash
 az login
@@ -56,15 +57,15 @@ Set environment variables instead of putting secrets in source:
 PowerShell:
 
 ```powershell
-$env:AZURE_OPENAI_ENDPOINT="https://YOUR-RESOURCE.openai.azure.com/"
-$env:AZURE_OPENAI_DEPLOYMENT_NAME="YOUR-DEPLOYMENT"
+$env:AzureOpenAI__Endpoint="https://YOUR-RESOURCE.openai.azure.com/"
+$env:AzureOpenAI__Deployment="YOUR-DEPLOYMENT"
 ```
 
 macOS/Linux:
 
 ```bash
-export AZURE_OPENAI_ENDPOINT="https://YOUR-RESOURCE.openai.azure.com/"
-export AZURE_OPENAI_DEPLOYMENT_NAME="YOUR-DEPLOYMENT"
+export AzureOpenAI__Endpoint="https://YOUR-RESOURCE.openai.azure.com/"
+export AzureOpenAI__Deployment="YOUR-DEPLOYMENT"
 ```
 
 Or put the values in `src/ArchGuard.Api/appsettings.json` locally.
@@ -74,10 +75,10 @@ For production, prefer Managed Identity rather than broad credential fallback.
 ## Run
 
 ```bash
-dotnet restore
-dotnet build
-dotnet test
-dotnet run --project src/ArchGuard.Api
+dotnet restore ArchGuard.sln
+dotnet build ArchGuard.sln
+dotnet test ArchGuard.sln
+dotnet run --project src/ArchGuard.Api/ArchGuard.Api.csproj
 ```
 
 Open:
@@ -87,6 +88,23 @@ http://localhost:5000
 ```
 
 The actual port may be shown by ASP.NET Core at startup.
+
+Swagger UI:
+
+```text
+http://localhost:5000/swagger
+```
+
+## API endpoints
+
+- `GET /api/health` - service health check.
+- `GET /api/policies` - current deterministic governance policies.
+- `GET /api/scenarios/bad` - deliberately non-compliant demo architecture.
+- `GET /api/scenarios/good` - remediated demo architecture.
+- `POST /api/evaluate` - deterministic governance decision.
+- `POST /api/review` - deterministic decision plus AI explanation when Azure OpenAI is configured.
+
+The static dashboard in `src/ArchGuard.Api/wwwroot/index.html` loads its scenarios through `/api/scenarios/bad` and `/api/scenarios/good`.
 
 ## Event demo flow
 
