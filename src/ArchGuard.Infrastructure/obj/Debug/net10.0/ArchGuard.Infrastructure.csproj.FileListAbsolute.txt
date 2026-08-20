@@ -13,3 +13,4 @@
 /Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/refint/ArchGuard.Infrastructure.dll
 /Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.pdb
 /Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ref/ArchGuard.Infrastructure.dll
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Infrastructure/obj/Debug/net10.0/ArchGuard.Infrastructure.sourcelink.json

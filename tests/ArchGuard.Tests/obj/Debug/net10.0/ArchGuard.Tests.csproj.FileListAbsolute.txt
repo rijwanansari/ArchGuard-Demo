@@ -132,3 +132,4 @@
 /Users/rijwanansari/Downloads/ArchGuard-Demo/tests/ArchGuard.Tests/obj/Debug/net10.0/ArchGuard.Tests.pdb
 /Users/rijwanansari/Downloads/ArchGuard-Demo/tests/ArchGuard.Tests/obj/Debug/net10.0/ArchGuard.Tests.genruntimeconfig.cache
 /Users/rijwanansari/Downloads/ArchGuard-Demo/tests/ArchGuard.Tests/obj/Debug/net10.0/ref/ArchGuard.Tests.dll
+/Users/rijwanansari/Downloads/ArchGuard-Demo/tests/ArchGuard.Tests/obj/Debug/net10.0/ArchGuard.Tests.sourcelink.json

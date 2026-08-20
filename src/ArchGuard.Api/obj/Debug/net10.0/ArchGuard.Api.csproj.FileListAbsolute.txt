@@ -65,3 +65,4 @@
 /Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Api/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Api/obj/Debug/net10.0/ArchGuard.Api.MvcApplicationPartsAssemblyInfo.cs
 /Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Api/obj/Debug/net10.0/compressed/kcz3w4bkem-{0}-x1uf008eir-x1uf008eir.gz
+/Users/rijwanansari/Downloads/ArchGuard-Demo/src/ArchGuard.Api/obj/Debug/net10.0/ArchGuard.Api.sourcelink.json
