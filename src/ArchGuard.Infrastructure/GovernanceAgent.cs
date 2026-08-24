@@ -18,9 +18,14 @@ public sealed class GovernanceAgent
         GovernanceEngine engine,
         PolicyRepository policies)
     {
+   //     var client = new AzureOpenAIClient(
+   //     new Uri(endpoint),
+   //         new DefaultAzureCredential());
+
+
         var client = new AzureOpenAIClient(
             new Uri(endpoint),
-            new DefaultAzureCredential());
+            new Azure.AzureKeyCredential(GovernanceAgentOptions.ApiKey));
 
         var tools = new List<AITool>
         {
@@ -129,4 +134,11 @@ public sealed class GovernanceAgent
 
         return guidance;
     }
+}
+
+
+public sealed class GovernanceAgentOptions
+{
+public static string ApiKey { get; private set; } = "";
+
 }
