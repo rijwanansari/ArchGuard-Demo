@@ -433,6 +433,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+<<<<<<< HEAD
 
 # Visual Studio Code
 .vscode/*
@@ -445,3 +446,5 @@ FodyWeavers.xsd
 
 # Built Visual Studio Code Extensions
 *.vsix
+=======
+>>>>>>> 7d908d2 (Stop tracking build outputs)
